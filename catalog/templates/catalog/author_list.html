@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+ 
+{% if author_list %}	
+
+<div class="container">
+ <br><br>  
+ <h1>Author List</h1>
+ 
+ {% for author in author_list %}
+  <div class="row">
+    <div class="col-sm-8">
+      <h3><a href="{% url 'author-detail' author.pk %}">{{ author.first_name }}, {{ author.last_name }} ({{ author.date_of_birth }} - {{ author.date_of_death }}) </a></h3>
+    </div>
+    <div class="col-sm-2">
+      <h3><a href ="{% url 'author_update' author.pk %}"> Update </a></h3>      
+    </div>
+     <div class="col-sm-2">
+       <h3><a href="{% url 'author_delete' author.pk %}"> Delete </a></h3>     
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+    <p>There are no Author in the library.</p>
+{% endif %} 
+	
+	
+{% endblock %}
